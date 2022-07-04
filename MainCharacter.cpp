@@ -15,7 +15,7 @@ AMainCharacter::AMainCharacter() : BaseTurnRate(45.f),BaseLookUpRate(45.f), Came
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 180.f; // The camera follows at this distance behind the character
-	CameraBoom->bUsePawnControlRotation = false; // Rotate the arm based on the controller
+	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 	CameraBoom->SocketOffset = FVector(0.f, 50.f, 70.f);
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
@@ -31,6 +31,8 @@ AMainCharacter::AMainCharacter() : BaseTurnRate(45.f),BaseLookUpRate(45.f), Came
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
+	//AIControllerClass = AKOK_AIController::StaticClass();
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 }
 
 // Called when the game starts or when spawned
@@ -102,3 +104,7 @@ void AMainCharacter::Lookup(float value)
 	AddControllerPitchInput(value);
 }
 
+void AMainCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+}
