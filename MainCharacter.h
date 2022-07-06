@@ -27,6 +27,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void PossessedBy(AController* NewController) override;
+
 protected:
 	void Forward(float value);
 	void Right(float value);
@@ -37,7 +38,6 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
-
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
@@ -60,8 +60,7 @@ private:
 	/** Current field of view this frame*/
 	float CameraCurrentFOV;
 
-	UPROPERTY()
-	class AKOK_AIController* KOK_AIController;
+	AController* PlayerController;
 
 public:
 	/** Returns CameraBoom subobject */
