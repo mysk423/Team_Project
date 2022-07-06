@@ -2,48 +2,31 @@
 
 
 #include "KOK_AIController.h"
-#include "BehaviorTree/BehaviorTree.h"
-#include "BehaviorTree/BlackboardData.h"
 #include "BehaviorTree/BlackboardComponent.h"
-
-const FName AKOK_AIController::HomePosKey(TEXT("HomePos"));
-const FName AKOK_AIController::PatrolPosKey(TEXT("PatrolPos"));
-const FName AKOK_AIController::TargetKey(TEXT("Target"));
+#include "BehaviorTree/BehaviorTreeComponent.h"
+#include "BehaviorTree/BehaviorTree.h"
+#include "Enemy.h"
 
 AKOK_AIController::AKOK_AIController()
 {
-	static ConstructorHelpers::FObjectFinder<UBlackboardData> BBObject(TEXT("/Game/_Game/AI/BB_MICharacter.BB_MICharacter"));
-	if (BBObject.Succeeded())
-	{
-		BBAsset = BBObject.Object;
-	}
+	BlackboardComponent = CreateDefaultSubobject<UBlackboardComponent>(TEXT("BlackboardComponent"));
+	check(BlackboardComponent);
 
-	static ConstructorHelpers::FObjectFinder<UBehaviorTree> BTObject(TEXT("/Game/_Game/AI/BT_MICharacter.BT_MICharacter"));
-	if (BTObject.Succeeded())
-	{
-		BTAsset = BTObject.Object;
-	}
+	BehaviorTreeComponent = CreateDefaultSubobject<UBehaviorTreeComponent>(TEXT("BehaviorTreeComponent"));
+	check(BehaviorTreeComponent);
 }
 
 void AKOK_AIController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
-}
+	if (InPawn == nullptr) return;
 
-void AKOK_AIController::RunAI()
-{
-	if (UseBlackboard(BBAsset, Blackboard))
+	AEnemy* Enemy = Cast<AEnemy>(InPawn);
+	if (Enemy)
 	{
-		Blackboard->SetValueAsVector(HomePosKey, GetPawn()->GetActorLocation());
+		if (Enemy->GetBehaviorTree())
+		{
+			BlackboardComponent->InitializeBlackboard(*(Enemy->GetBehaviorTree()->BlackboardAsset));
+		}
 	}
 }
-
-void AKOK_AIController::StopAI()
-{
-	auto BehaviorTreeComponent = Cast<UBehaviorTreeComponent>(BrainComponent);
-	if (nullptr != BehaviorTreeComponent)
-	{
-		BehaviorTreeComponent->StopTree(EBTStopMode::Safe);
-	}
-}
-
