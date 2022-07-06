@@ -4,6 +4,10 @@
 #include "KOK_PlayerController.h"
 #include "Blueprint/UserWidget.h"
 
+AKOK_PlayerController::AKOK_PlayerController() {
+
+}
+
 void AKOK_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();

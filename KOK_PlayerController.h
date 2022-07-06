@@ -27,5 +27,6 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Widget, meta = (AllowPrivateAccess = "true"))
 	UUserWidget* HUDOverlay;
+
 	
 };
