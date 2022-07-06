@@ -14,24 +14,20 @@ class TEAM_PROJECT_API AKOK_AIController : public AAIController
 {
 
 	GENERATED_BODY()
-	
-
 public:
 	AKOK_AIController();
 	virtual void OnPossess(APawn* InPawn) override;
 
-	static const FName HomePosKey;
-	static const FName PatrolPosKey;
-	static const FName TargetKey;
-
-	void RunAI();
-	void StopAI();
-
 private:
+	/** Blackboard component for this enemy */
+	UPROPERTY(BlueprintReadWrite, Category = "AI Behavior", meta = (AllowPrivateAccess = "true"))
+		class UBlackboardComponent* BlackboardComponent;
 
-	UPROPERTY()
-	class UBehaviorTree* BTAsset;
+	/** Behavior tree component for this enemy */
+	UPROPERTY(BlueprintReadWrite, Category = "AI Behavior", meta = (AllowPrivateAccess = "true"))
+		class UBehaviorTreeComponent* BehaviorTreeComponent;
 
-	UPROPERTY()
-	class UBlackboardData* BBAsset;
+public:
+
+	FORCEINLINE UBlackboardComponent* GetBlackboardComponent() const { return BlackboardComponent; }
 };
