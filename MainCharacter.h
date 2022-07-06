@@ -13,7 +13,7 @@ class TEAM_PROJECT_API AMainCharacter : public ACharacter
 
 public:
 	// Sets default values for this character's properties
-	AMainCharacter(); //asdfsadf
+	AMainCharacter(); 
 
 protected:
 	// Called when the game starts or when spawned
@@ -28,12 +28,28 @@ public:
 
 	virtual void PossessedBy(AController* NewController) override;
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 1dfea83a3c542f7808a4e9ea7411c1c5976de456
 protected:
 	void Forward(float value);
 	void Right(float value);
 	void Turn(float value);
 	void Lookup(float value);
 
+	void Attack();
+
+	void StrongAttack();
+
+	//Animnotify 호출함수
+	UFUNCTION(BlueprintCallable)
+		void EndAttacking();
+
+	UFUNCTION(BlueprintCallable)
+		void AttackInputChecking();
+	
 private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -55,6 +71,12 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float BaseLookUpRate;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Attack, meta = (AllowPrivateAccess = "true"))
+		class UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = StrongAttack, meta = (AllowPrivateAccess = "true"))
+		class UAnimMontage* StrongAttackMontage;
+
 	float CameraDefaultFOV;
 
 	/** Current field of view this frame*/
@@ -62,11 +84,31 @@ private:
 
 	AController* PlayerController;
 
+	//공격 콤보 구현
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Attack, meta = (AllowPrivateAccess = "true"))
+	bool bIsAttackNextAttack;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Attack, meta = (AllowPrivateAccess = "true"))
+	bool bAttacking;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Attack, meta = (AllowPrivateAccess = "true"))
+	bool bLMBDown;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Attack, meta = (AllowPrivateAccess = "true"))
+	int ComboCnt;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = StrongAttack, meta = (AllowPrivateAccess = "true"))
+		bool bStrongAttack;
+
 public:
 	/** Returns CameraBoom subobject */
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject */
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	//FORCEINLINE
-	//vodf
+
+	//왼쪽 마우스 눌렀을때
+	void LMBDown();
+	FORCEINLINE void LMBUp() { bLMBDown = false; }
+	//강 공격 안하는 중...
+	FORCEINLINE void NotStrongAttack() { bStrongAttack = false; }
 };
