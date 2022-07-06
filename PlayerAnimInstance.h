@@ -20,6 +20,8 @@ public:
 
 	virtual void NativeInitializeAnimation() override;
 
+	
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	class AMainCharacter* Wukong;
