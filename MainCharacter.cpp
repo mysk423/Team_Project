@@ -4,6 +4,10 @@
 #include "MainCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "KOK_AIController.h"
+#include "Blueprint/UserWidget.h"
+#include "KOK_PlayerController.h"
+#include "Components/WidgetComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimMontage.h"
@@ -33,7 +37,6 @@ AMainCharacter::AMainCharacter() : BaseTurnRate(45.f),BaseLookUpRate(45.f), Came
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
-	//AIControllerClass = AKOK_AIController::StaticClass();
 	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
 	bIsAttackNextAttack = false;

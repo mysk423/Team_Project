@@ -28,8 +28,11 @@ public:
 
 	virtual void PossessedBy(AController* NewController) override;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1dfea83a3c542f7808a4e9ea7411c1c5976de456
 protected:
 	void Forward(float value);
 	void Right(float value);
@@ -51,7 +54,6 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
-
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
@@ -80,8 +82,7 @@ private:
 	/** Current field of view this frame*/
 	float CameraCurrentFOV;
 
-	UPROPERTY()
-	class AKOK_AIController* KOK_AIController;
+	AController* PlayerController;
 
 	//공격 콤보 구현
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Attack, meta = (AllowPrivateAccess = "true"))
