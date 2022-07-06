@@ -13,7 +13,7 @@ class TEAM_PROJECT_API AMainCharacter : public ACharacter
 
 public:
 	// Sets default values for this character's properties
-	AMainCharacter();
+	AMainCharacter(); //asdfsadf
 
 protected:
 	// Called when the game starts or when spawned
@@ -67,4 +67,6 @@ public:
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject */
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	//FORCEINLINE
+	//vodf
 };
