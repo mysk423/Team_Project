@@ -28,11 +28,6 @@ public:
 
 	virtual void PossessedBy(AController* NewController) override;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 1dfea83a3c542f7808a4e9ea7411c1c5976de456
 protected:
 	void Forward(float value);
 	void Right(float value);

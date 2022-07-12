@@ -3,6 +3,7 @@
 
 #include "KOK_PlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "BaseQuest.h"
 
 AKOK_PlayerController::AKOK_PlayerController() {
 
@@ -12,14 +13,10 @@ void AKOK_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (HUDOverlayClass)
-	{
-		HUDOverlay = CreateWidget<UUserWidget>(this, HUDOverlayClass);
+}
 
-		if (HUDOverlay)
-		{
-			HUDOverlay->AddToViewport();
-			HUDOverlay->SetVisibility(ESlateVisibility::Visible);
-		}
-	}
+void AKOK_PlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
 }

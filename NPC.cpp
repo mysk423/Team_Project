@@ -44,11 +44,9 @@ void ANPC::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 {
 	if (OtherActor)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Beginoverlap!!"));
 		AMainCharacter* MainCharacter = Cast<AMainCharacter>(OtherActor);
 		if (MainCharacter)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Beginoverlap!!"));
 			InterActionWidget->SetVisibility(true);
 		}
 	}

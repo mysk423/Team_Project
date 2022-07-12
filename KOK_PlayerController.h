@@ -19,14 +19,7 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	virtual void SetupInputComponent() override;
 
-private:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widget, meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<class UUserWidget> HUDOverlayClass;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Widget, meta = (AllowPrivateAccess = "true"))
-	UUserWidget* HUDOverlay;
-
-	
 };
